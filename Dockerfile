@@ -19,7 +19,7 @@ RUN if [ "${ARCH}" == "amd64" ]; then \
 
 ENV DAPPER_RUN_ARGS --privileged
 ENV DAPPER_ENV ARCH REPO TAG DRONE_TAG IMAGE_NAME CROSS
-ENV DAPPER_SOURCE /go/src/github.com/k3s-io/kine/
+ENV DAPPER_SOURCE /go/src/github.com/vinceaperri/kine/
 ENV DAPPER_OUTPUT ./bin ./dist
 ENV DAPPER_DOCKER_SOCKET true
 ENV HOME ${DAPPER_SOURCE}

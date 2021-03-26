@@ -1,4 +1,4 @@
-module github.com/k3s-io/kine
+module github.com/vinceaperri/kine
 
 go 1.15
 
