@@ -9,7 +9,6 @@ import (
 
 	"github.com/k3s-io/kine/pkg/drivers/dqlite"
 	"github.com/k3s-io/kine/pkg/drivers/generic"
-	"github.com/k3s-io/kine/pkg/drivers/mysql"
 	"github.com/k3s-io/kine/pkg/drivers/pgsql"
 	"github.com/k3s-io/kine/pkg/drivers/sqlite"
 	"github.com/k3s-io/kine/pkg/server"
@@ -24,7 +23,6 @@ const (
 	SQLiteBackend   = "sqlite"
 	DQLiteBackend   = "dqlite"
 	ETCDBackend     = "etcd3"
-	MySQLBackend    = "mysql"
 	PostgresBackend = "postgres"
 )
 
@@ -131,8 +129,6 @@ func getKineStorageBackend(ctx context.Context, driver, dsn string, cfg Config) 
 		backend, err = dqlite.New(ctx, dsn, cfg.ConnectionPoolConfig)
 	case PostgresBackend:
 		backend, err = pgsql.New(ctx, dsn, cfg.Config, cfg.ConnectionPoolConfig)
-	case MySQLBackend:
-		backend, err = mysql.New(ctx, dsn, cfg.Config, cfg.ConnectionPoolConfig)
 	default:
 		return false, nil, fmt.Errorf("storage backend is not defined")
 	}
