@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	"github.com/k3s-io/kine/pkg/drivers/generic"
-	"github.com/k3s-io/kine/pkg/drivers/pgsql"
 	"github.com/k3s-io/kine/pkg/drivers/sqlite"
 	"github.com/k3s-io/kine/pkg/server"
 	"github.com/k3s-io/kine/pkg/tls"
@@ -21,7 +20,6 @@ const (
 	KineSocket      = "unix://kine.sock"
 	SQLiteBackend   = "sqlite"
 	ETCDBackend     = "etcd3"
-	PostgresBackend = "postgres"
 )
 
 type Config struct {
@@ -123,8 +121,6 @@ func getKineStorageBackend(ctx context.Context, driver, dsn string, cfg Config) 
 	case SQLiteBackend:
 		leaderElect = false
 		backend, err = sqlite.New(ctx, dsn, cfg.ConnectionPoolConfig)
-	case PostgresBackend:
-		backend, err = pgsql.New(ctx, dsn, cfg.Config, cfg.ConnectionPoolConfig)
 	default:
 		return false, nil, fmt.Errorf("storage backend is not defined")
 	}
