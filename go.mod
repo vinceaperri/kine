@@ -4,7 +4,6 @@ go 1.15
 
 require (
 	github.com/Rican7/retry v0.1.0
-	github.com/canonical/go-dqlite v1.5.1
 	github.com/lib/pq v1.8.0
 	github.com/mattn/go-sqlite3 v1.14.4
 	github.com/pkg/errors v0.8.1

@@ -7,7 +7,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/k3s-io/kine/pkg/drivers/dqlite"
 	"github.com/k3s-io/kine/pkg/drivers/generic"
 	"github.com/k3s-io/kine/pkg/drivers/pgsql"
 	"github.com/k3s-io/kine/pkg/drivers/sqlite"
@@ -21,7 +20,6 @@ import (
 const (
 	KineSocket      = "unix://kine.sock"
 	SQLiteBackend   = "sqlite"
-	DQLiteBackend   = "dqlite"
 	ETCDBackend     = "etcd3"
 	PostgresBackend = "postgres"
 )
@@ -125,8 +123,6 @@ func getKineStorageBackend(ctx context.Context, driver, dsn string, cfg Config) 
 	case SQLiteBackend:
 		leaderElect = false
 		backend, err = sqlite.New(ctx, dsn, cfg.ConnectionPoolConfig)
-	case DQLiteBackend:
-		backend, err = dqlite.New(ctx, dsn, cfg.ConnectionPoolConfig)
 	case PostgresBackend:
 		backend, err = pgsql.New(ctx, dsn, cfg.Config, cfg.ConnectionPoolConfig)
 	default:
